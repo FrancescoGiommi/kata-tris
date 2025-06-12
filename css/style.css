@@ -1,0 +1,20 @@
+.container {
+  max-width: 1300px;
+  margin: auto;
+}
+
+.grid {
+  height: 100vh;
+  background-color: aqua;
+}
+
+.grid-table {
+  border: 1px solid black;
+  height: 600px;
+  width: 600px;
+}
+
+.table-head {
+  height: 200px;
+  width: 200px;
+}
