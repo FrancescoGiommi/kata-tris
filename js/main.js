@@ -56,3 +56,22 @@ Buon divertimento 👾
 - Ragiona sui dati: ad es. quale struttura dati potrebbe rappresentare al meglio la griglia di gioco? E le combinazioni vincenti?
 - Non esiste una sola soluzione corretta. L'importante è che funzioni e che tu capisca perché funziona!
 - Non è necessario che il gioco sia responsive, limitiamoci alla versione desktop */
+
+const gameDataEl = document.querySelector(".game-data");
+const buttonEl = document.querySelectorAll(".game-button");
+
+console.log(buttonEl);
+
+let currentPLayer = "X";
+
+document.querySelectorAll(".game-button").forEach((button) => {
+  button.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (e.target.textContent === "") {
+      e.target.textContent = currentPLayer;
+
+      currentPLayer = currentPLayer === "X" ? "O" : "X";
+    }
+  });
+});
