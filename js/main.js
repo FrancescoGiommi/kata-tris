@@ -69,68 +69,102 @@ const c6 = document.getElementById("cell-6");
 const c7 = document.getElementById("cell-7");
 const c8 = document.getElementById("cell-8");
 const winText = document.getElementById("winText");
+const restart = document.getElementById("restart");
 
 console.log(buttonEl);
 
 let currentPLayer = "X";
+restart.addEventListener("click", restartMatch);
 
 document.querySelectorAll(".game-button").forEach((button) => {
   button.addEventListener("click", (e) => {
     e.preventDefault();
 
     if (e.target.textContent === "") {
-      const giocatore = currentPLayer; // Chi sta giocando ORA
-      e.target.textContent = giocatore; // Mostro il simbolo
-      currentPLayer = giocatore === "X" ? "O" : "X"; // Cambio turno
-      if (
-        c0.textContent !== "" &&
-        c0.textContent === c1.textContent &&
-        c1.textContent === c2.textContent
-      ) {
+      // Chi sta giocando ora
+      const giocatore = currentPLayer;
+
+      // Mostro il simbolo
+      e.target.textContent = giocatore;
+
+      // Cambio turno
+      currentPLayer = giocatore === "X" ? "O" : "X";
+
+      // Controllo che tutti i campi siano pieni
+      const allFilled = [...document.querySelectorAll(".game-button")].every(
+        (btn) => btn.textContent !== ""
+      );
+
+      // Se si verifica una condizione di vittoria
+      if (checkWin(giocatore)) {
+        // Mostro Hai vinto!
         winText.innerHTML = `${giocatore} Ha vinto!`;
-      } else if (
-        c3.textContent !== "" &&
-        c3.textContent === c4.textContent &&
-        c4.textContent === c5.textContent
-      ) {
-        winText.innerHTML = `${giocatore} Ha vinto!`;
-      } else if (
-        c6.textContent !== "" &&
-        c6.textContent === c7.textContent &&
-        c7.textContent === c8.textContent
-      ) {
-        winText.innerHTML = `${giocatore} Ha vinto!`;
-      } else if (
-        c0.textContent !== "" &&
-        c0.textContent === c4.textContent &&
-        c4.textContent === c8.textContent
-      ) {
-        winText.innerHTML = `${giocatore} Ha vinto!`;
-      } else if (
-        c2.textContent !== "" &&
-        c2.textContent === c4.textContent &&
-        c4.textContent === c6.textContent
-      ) {
-        winText.innerHTML = `${giocatore} Ha vinto!`;
-      } else if (
-        c0.textContent !== "" &&
-        c0.textContent === c3.textContent &&
-        c3.textContent === c6.textContent
-      ) {
-        winText.innerHTML = `${giocatore} Ha vinto!`;
-      } else if (
-        c2.textContent !== "" &&
-        c2.textContent === c5.textContent &&
-        c5.textContent === c8.textContent
-      ) {
-        winText.innerHTML = `${giocatore} Ha vinto!`;
-      } else if (
-        c1.textContent !== "" &&
-        c1.textContent === c4.textContent &&
-        c4.textContent === c7.textContent
-      ) {
-        winText.innerHTML = `${giocatore} Ha vinto!`;
+
+        // Disabilito i bottoni
+        disabledAllButton();
+
+        // Faccio comparire il bottone per ricominciare
+        document.getElementById("restart").style.display = "inline-block";
+
+        // Se invece tutti i campi sono pieni
+      } else if (allFilled) {
+        // Mostro Pareggio!
+        winText.innerHTML = `Pareggio!`;
+
+        // Disabilito i bottoni
+        disabledAllButton();
+
+        // Faccio comparire il bottone per ricominciare
+        document.getElementById("restart").style.display = "inline-block";
       }
     }
   });
 });
+
+// Funzione per disabilitare i bottoni
+function disabledAllButton() {
+  document.querySelectorAll(".game-button").forEach((btn) => {
+    btn.disabled = true;
+  });
+}
+
+// Funzione per ricominciare la partita
+function restartMatch() {
+  document.querySelectorAll(".game-button").forEach((btn) => {
+    btn.textContent = "";
+    btn.disabled = false;
+  });
+  winText.innerHTML = "";
+  document.getElementById("restart").style.display = "none";
+  currentPLayer = "X";
+}
+
+// Funzione per tutte le combinazioni di vittoria
+function checkWin(symbol) {
+  return (
+    (c0.textContent === symbol &&
+      c1.textContent === symbol &&
+      c2.textContent === symbol) ||
+    (c3.textContent === symbol &&
+      c4.textContent === symbol &&
+      c5.textContent === symbol) ||
+    (c6.textContent === symbol &&
+      c7.textContent === symbol &&
+      c8.textContent === symbol) ||
+    (c0.textContent === symbol &&
+      c3.textContent === symbol &&
+      c6.textContent === symbol) ||
+    (c1.textContent === symbol &&
+      c4.textContent === symbol &&
+      c7.textContent === symbol) ||
+    (c2.textContent === symbol &&
+      c5.textContent === symbol &&
+      c8.textContent === symbol) ||
+    (c0.textContent === symbol &&
+      c4.textContent === symbol &&
+      c8.textContent === symbol) ||
+    (c2.textContent === symbol &&
+      c4.textContent === symbol &&
+      c6.textContent === symbol)
+  );
+}
