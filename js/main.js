@@ -59,6 +59,16 @@ Buon divertimento 👾
 
 const gameDataEl = document.querySelector(".game-data");
 const buttonEl = document.querySelectorAll(".game-button");
+const c0 = document.getElementById("cell-0");
+const c1 = document.getElementById("cell-1");
+const c2 = document.getElementById("cell-2");
+const c3 = document.getElementById("cell-3");
+const c4 = document.getElementById("cell-4");
+const c5 = document.getElementById("cell-5");
+const c6 = document.getElementById("cell-6");
+const c7 = document.getElementById("cell-7");
+const c8 = document.getElementById("cell-8");
+const winText = document.getElementById("winText");
 
 console.log(buttonEl);
 
@@ -69,9 +79,58 @@ document.querySelectorAll(".game-button").forEach((button) => {
     e.preventDefault();
 
     if (e.target.textContent === "") {
-      e.target.textContent = currentPLayer;
-
-      currentPLayer = currentPLayer === "X" ? "O" : "X";
+      const giocatore = currentPLayer; // Chi sta giocando ORA
+      e.target.textContent = giocatore; // Mostro il simbolo
+      currentPLayer = giocatore === "X" ? "O" : "X"; // Cambio turno
+      if (
+        c0.textContent !== "" &&
+        c0.textContent === c1.textContent &&
+        c1.textContent === c2.textContent
+      ) {
+        winText.innerHTML = `${giocatore} Ha vinto!`;
+      } else if (
+        c3.textContent !== "" &&
+        c3.textContent === c4.textContent &&
+        c4.textContent === c5.textContent
+      ) {
+        winText.innerHTML = `${giocatore} Ha vinto!`;
+      } else if (
+        c6.textContent !== "" &&
+        c6.textContent === c7.textContent &&
+        c7.textContent === c8.textContent
+      ) {
+        winText.innerHTML = `${giocatore} Ha vinto!`;
+      } else if (
+        c0.textContent !== "" &&
+        c0.textContent === c4.textContent &&
+        c4.textContent === c8.textContent
+      ) {
+        winText.innerHTML = `${giocatore} Ha vinto!`;
+      } else if (
+        c2.textContent !== "" &&
+        c2.textContent === c4.textContent &&
+        c4.textContent === c6.textContent
+      ) {
+        winText.innerHTML = `${giocatore} Ha vinto!`;
+      } else if (
+        c0.textContent !== "" &&
+        c0.textContent === c3.textContent &&
+        c3.textContent === c6.textContent
+      ) {
+        winText.innerHTML = `${giocatore} Ha vinto!`;
+      } else if (
+        c2.textContent !== "" &&
+        c2.textContent === c5.textContent &&
+        c5.textContent === c8.textContent
+      ) {
+        winText.innerHTML = `${giocatore} Ha vinto!`;
+      } else if (
+        c1.textContent !== "" &&
+        c1.textContent === c4.textContent &&
+        c4.textContent === c7.textContent
+      ) {
+        winText.innerHTML = `${giocatore} Ha vinto!`;
+      }
     }
   });
 });

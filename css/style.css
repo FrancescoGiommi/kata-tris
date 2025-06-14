@@ -6,6 +6,11 @@
 .grid {
   height: 100vh;
   background-color: aqua;
+  display: flex;
+  flex: row;
+  gap: 8rem;
+  justify-content: center;
+  padding-top: 200px;
 }
 
 .grid-table {
@@ -23,4 +28,5 @@
 .game-button {
   height: 200px;
   width: 200px;
+  font-size: 50px;
 }
