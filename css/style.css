@@ -5,7 +5,7 @@
 
 .grid {
   height: 100vh;
-  background-color: rgb(20, 17, 173);
+  background-color: #3030d4;
   display: flex;
   flex: row;
   gap: 8rem;
@@ -14,7 +14,7 @@
 }
 
 .grid-table {
-  border: 1px solid black;
+  border: 1px solid white;
   height: 600px;
   width: 600px;
 }
@@ -22,8 +22,8 @@
 .game-data {
   height: 200px;
   width: 200px;
-  border: 1px solid black;
-  background-color: rgb(20, 17, 173);
+  border: 1px solid white;
+  background-color: #3030d4;
 }
 
 .description {
@@ -34,6 +34,12 @@
   height: 200px;
   width: 200px;
   font-size: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: transform 0.3s ease;
 }
 
 #winText {
@@ -44,10 +50,7 @@
 
 #restart {
   display: none;
-  font-size: 2rem;
-  padding: 15px;
   border-radius: 12px;
   border: none;
-  background-color: yellow;
   margin-top: 50px;
 }
